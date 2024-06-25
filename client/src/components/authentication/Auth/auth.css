@@ -1,0 +1,17 @@
+.email,
+.password {
+	width: 60%;
+	margin: 20px auto !important;
+	display: block !important;
+}
+
+.email>div,
+.password>div {
+	width: 100%;
+}
+
+.submit {
+	width: 30%;
+	margin: 0 auto !important;
+	display: block !important;
+}
