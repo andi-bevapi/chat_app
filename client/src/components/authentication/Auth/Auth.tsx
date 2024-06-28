@@ -29,7 +29,9 @@ const Auth = ({ submitLabel, onSubmit, children }: AuthProps) => {
 				<TextField type="email" label="Email" variant="outlined" value={loginField.email} name="email" onChange={handleChange} className="email" />
 				<TextField type="password" label="Password" variant="outlined" value={loginField.password} name="password" onChange={handleChange} className="password" />
 				<Button variant="contained" className="submit">{submitLabel}</Button>
-				{children}
+				<div className="link-container">
+					{children}
+				</div>
 			</form>
 		</Stack>
 	)
