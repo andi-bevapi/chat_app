@@ -10,6 +10,12 @@ type User {
   password: String!
 }
 
+type DeleteUserEntity {
+  id: Float!
+  success: Boolean!
+  message: String!
+}
+
 type Query {
   findAll: [User!]!
   getById(id: Int!): User!
@@ -18,16 +24,20 @@ type Query {
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(id: Int!): User!
+  removeUser(id: Int!): DeleteUserEntity!
 }
 
 input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
+  lastname: String!
+  email: String!
+  password: String!
 }
 
 input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  name: String
+  lastname: String
+  email: String
+  password: String
   id: Int!
 }

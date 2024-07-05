@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
+import { LoggerModule } from 'nestjs-pino';
 @Module({
 	imports: [
 		TypeOrmModule.forRoot({
@@ -21,6 +22,16 @@ import { User } from './users/entities/user.entity';
 			autoSchemaFile: "src/schema.gql",
 		}),
 		UsersModule,
+		LoggerModule.forRoot({
+			pinoHttp: {
+				transport: {
+					target: 'pino-pretty',
+					options: {
+						singleLine: true
+					}
+				}
+			}
+		})
 	],
 	controllers: [],
 	providers: [],
