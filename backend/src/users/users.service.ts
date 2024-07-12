@@ -49,6 +49,9 @@ export class UsersService {
 
 	public async update(id: number, updateUserInput: UpdateUserInput): Promise<User> {
 		try {
+			if (updateUserInput.password) {
+				updateUserInput.password = await bcrypt.hash(updateUserInput.password,10);
+			}
 			await this.usersRepository.update(id, updateUserInput);
 			const result = this.usersRepository.findOne({ where: { id } })
 			return result;
