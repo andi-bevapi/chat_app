@@ -5,7 +5,9 @@ import "./auth.css";
 
 interface AuthProps {
 	submitLabel: string;
-	onSubmit: (credentials: { email: string; password: string }) => Promise<void>;
+	onSubmit: (
+		eventForm: React.FormEvent<HTMLFormElement>, 
+		credentials: { email: string; password: string }) => Promise<void>;
 	children: React.ReactNode
 }
 
@@ -19,16 +21,15 @@ const Auth = ({ submitLabel, onSubmit, children }: AuthProps) => {
 	}
 
 
-
 	return (
 		<Stack spacing={3}
 			sx={{
 				margin: "25% auto"
 			}}>
-			<form onSubmit={() => onSubmit({ email: loginField.email, password: loginField.password })}>
+			<form onSubmit={(eventForm) => onSubmit(eventForm, { email: loginField.email, password: loginField.password })}>
 				<TextField type="email" label="Email" variant="outlined" value={loginField.email} name="email" onChange={handleChange} className="email" />
 				<TextField type="password" label="Password" variant="outlined" value={loginField.password} name="password" onChange={handleChange} className="password" />
-				<Button variant="contained" className="submit">{submitLabel}</Button>
+				<Button variant="contained" className="submit" type="submit">{submitLabel}</Button>
 				<div className="link-container">
 					{children}
 				</div>

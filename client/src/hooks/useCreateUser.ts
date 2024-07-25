@@ -1,9 +1,16 @@
 import { useMutation, gql } from "@apollo/client";
+import { User } from "../models/User";
+interface CreateUserInput {
+	createUserInput: {
+		email: string,
+		password: string
+	}
+}
 
 
 const CREATE_USER = gql`
-mutation CreateUser($createUserData:CreateUserInput!){
-createUser(createUserData: $createUserData){
+mutation CreateUser($createUserInput:CreateUserInput!){
+createUser(createUserInput: $createUserInput){
 		 id
 		 email
 		}
@@ -11,5 +18,7 @@ createUser(createUserData: $createUserData){
 `
 
 const useCreateUser = () => {
-	return useMutation(CREATE_USER)
+	return useMutation<User, CreateUserInput>(CREATE_USER)
 }
+
+export { useCreateUser };
